@@ -1,0 +1,7 @@
+<div id="city-guesslist">
+  <p>Lista ubacenih gradova</p>
+  <ul>
+    <li #element *ngFor="let grad of gradovi">{{ grad }} <button type="button" (click)="removeCity(element)">X</button></li>
+  </ul>
+</div>
+
