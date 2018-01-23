@@ -45,6 +45,16 @@ export class CitiesService {
     });
   }
 
+  oduzmiProcenat(grad) {
+    this.tacni.forEach((tacan, index) => {
+      if (tacan === grad) {
+        this.brojPogodjenih--;
+        this.procenatTacnih = (this.brojPogodjenih / this.brojTacnih) * 100;
+        this.emitujProcenatTacnih();
+      }
+    });
+  }
+
   emitujProcenatTacnih() {
     const procenat = Observable.create((observer: Observer<number>) => {
       setInterval(() => {

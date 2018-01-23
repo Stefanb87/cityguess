@@ -11,7 +11,7 @@ export class CityGuesslistComponent implements OnInit {
 
   gradovi: string[] = [];
 
-  constructor(private _citiesService: CitiesService) { }
+  constructor(private _citiesService: CitiesService) {}
 
   ngOnInit() {
     this.gradovi = this._citiesService.odabraniGradovi;
@@ -22,6 +22,7 @@ export class CityGuesslistComponent implements OnInit {
     this.gradovi.forEach((g, index) => {
       if (g === grad) {
         this.gradovi.splice(index, 1);
+        this._citiesService.oduzmiProcenat(grad);
       }
     });
   }
