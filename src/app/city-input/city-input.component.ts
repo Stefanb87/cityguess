@@ -19,6 +19,7 @@ export class CityInputComponent implements OnInit, OnDestroy {
   podaciSubscription: Subscription;
   myControl: FormControl = new FormControl();
   filteredOptions: Observable<string[]>;
+  greskaGrad: boolean;
 
   constructor(private _citiesService: CitiesService) { }
 
@@ -36,6 +37,8 @@ export class CityInputComponent implements OnInit, OnDestroy {
 
     this.filteredOptions = this.myControl.valueChanges
                           .pipe(startWith(''), map(val => this.filter(val)));
+
+    this.greskaGrad = this._citiesService.greska;
   }
 
   add(input: HTMLFormElement) {

@@ -14,6 +14,7 @@ export class CitiesService {
   brojTacnih;
   brojPogodjenih = 0;
   procenatTacnih = 0;
+  greska: boolean;
 
   constructor(private _http: Http) { }
 
@@ -29,9 +30,15 @@ export class CitiesService {
       });
   }
 
-  dodajUListu(grad) {
-    this.odabraniGradovi.push(grad);
-    this.izracunajProcenatTacnih(grad);
+  dodajUListu(grad): boolean {
+    if (this.odabraniGradovi.filter(g => g === grad).length === 0) {
+      this.odabraniGradovi.push(grad);
+      this.izracunajProcenatTacnih(grad);
+      return true;
+    } else {
+      this.greska = false;
+      return false;
+    }
   }
 
   izracunajProcenatTacnih(grad) {

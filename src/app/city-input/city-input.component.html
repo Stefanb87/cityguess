@@ -1,6 +1,7 @@
 <div *ngIf="podaci" id="city-input">
   <p>OBLAST: {{ podaci.oblast }}</p>
   <p>VREME: {{ podaci.vreme }} s</p>
+  <p *ngIf="!greskaGrad">Ovaj grad je vec odabran.</p>
   <form class="example-form">
     <mat-form-field class="example-full-width">
       <input #input type="text" name="City" placeholder="Input city..." aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
