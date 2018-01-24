@@ -20,6 +20,10 @@ export class ResultComponent implements OnInit, OnDestroy {
                                 });
   }
 
+  resetIgre() {
+    this._citiesService.odabraniGradovi = [];
+  }
+
   ngOnDestroy() {
     this.procenatSubscription.unsubscribe();
   }

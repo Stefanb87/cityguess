@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { CityInputComponent } from './city-input/city-input.component';
 import { CityGuesslistComponent } from './city-guesslist/city-guesslist.component';
 import { ResultComponent } from './result/result.component';
+import { CityHomeComponent } from './city-home/city-home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CityInputComponent,
     CityGuesslistComponent,
-    ResultComponent
+    ResultComponent,
+    CityHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -25,9 +27,9 @@ import { ResultComponent } from './result/result.component';
     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot([
-      { path: '', component: AppComponent },
+      { path: '', component: CityHomeComponent },
       { path: 'result', component: ResultComponent },
-      { path: '**', component: AppComponent }
+      { path: '**', component: CityHomeComponent }
     ]),
     BrowserAnimationsModule,
     MatAutocompleteModule,

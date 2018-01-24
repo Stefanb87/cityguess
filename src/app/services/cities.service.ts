@@ -34,9 +34,10 @@ export class CitiesService {
     if (this.odabraniGradovi.filter(g => g === grad).length === 0) {
       this.odabraniGradovi.push(grad);
       this.izracunajProcenatTacnih(grad);
+      this.greska = false;
       return true;
     } else {
-      this.greska = false;
+      this.greska = true;
       return false;
     }
   }

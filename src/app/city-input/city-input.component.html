@@ -1,10 +1,10 @@
 <div *ngIf="podaci" id="city-input">
   <p>OBLAST: {{ podaci.oblast }}</p>
   <p>VREME: {{ podaci.vreme }} s</p>
-  <p *ngIf="!greskaGrad">Ovaj grad je vec odabran.</p>
-  <form class="example-form">
+  <form #f="ngForm" class="example-form">
+    <p *ngIf="greskaGrad">Ovaj grad je vec odabran.</p>
     <mat-form-field class="example-full-width">
-      <input #input type="text" name="City" placeholder="Input city..." aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <input #input type="text" name="city" placeholder="Input city..." aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{ option }}
@@ -12,6 +12,6 @@
       </mat-autocomplete>
     </mat-form-field>
   </form>
-  <button type="button" (click)="add(input)">Dodaj u listu</button>
-  <button type="button">Zavrsi igru</button>
+  <button type="button" (click)="add(input, f)">Dodaj u listu</button>
+  <button type="button" routerLink="/result">Zavrsi igru</button>
 </div>
