@@ -3,12 +3,12 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class CitiesService {
 
   private _podaciUrl = 'assets/podaci.json';
+
   odabraniGradovi: string[] = [];
   tacni: string[];
   brojTacnih;
@@ -18,7 +18,8 @@ export class CitiesService {
 
   constructor(private _http: Http) { }
 
-  getData(): Observable<any> {
+  // uzima podatke iz JSON-a i setuje polja za tacne odgovore i broj tacnih (za izracunavanje procenta)
+  uzmiPodatke(): Observable<any> {
     return this._http.get(this._podaciUrl)
     .map(
       (response: Response) => {
@@ -29,6 +30,7 @@ export class CitiesService {
       });
   }
 
+  // dodaje gradove u listu i vraca gresku ako je duplikat ili prazna vrednost
   dodajUListu(grad): boolean {
     if (this.odabraniGradovi.filter(g => g === grad).length === 0 && grad !== '') {
       this.odabraniGradovi.push(grad);
@@ -41,6 +43,7 @@ export class CitiesService {
     }
   }
 
+  // sabira procenat tacnih i poziva metodu za emit procenta
   izracunajProcenatTacnih(grad) {
     this.tacni.forEach(tacan => {
       if (tacan === grad) {
@@ -51,6 +54,7 @@ export class CitiesService {
     });
   }
 
+  // oduzima procenat i poziva metodu za emit procenta
   oduzmiProcenat(grad) {
     this.tacni.forEach((tacan, index) => {
       if (tacan === grad) {
@@ -61,6 +65,7 @@ export class CitiesService {
     });
   }
 
+  // metoda za emit procenta
   emitujProcenatTacnih() {
     const procenat = Observable.create((observer: Observer<number>) => {
       setInterval(() => {

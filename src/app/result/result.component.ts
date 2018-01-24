@@ -15,11 +15,13 @@ export class ResultComponent implements OnInit, OnDestroy {
   constructor(private _citiesService: CitiesService) { }
 
   ngOnInit() {
+    // uzima procenat iz servisa
     this.procenatSubscription = this._citiesService.emitujProcenatTacnih().subscribe((number: number) => {
                                   this.procenat = number;
                                 });
   }
 
+  // reset polja u servisu za novu igru
   resetIgre() {
     this._citiesService.odabraniGradovi = [];
     this._citiesService.procenatTacnih = 0;

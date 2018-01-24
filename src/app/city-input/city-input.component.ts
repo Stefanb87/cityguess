@@ -5,7 +5,6 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
-import 'rxjs/add/operator/debounceTime';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,13 +18,14 @@ export class CityInputComponent implements OnInit, OnDestroy {
   vreme;
   podaciSubscription: Subscription;
   myControl: FormControl = new FormControl();
-  filteredOptions: Observable<string[]>;
+  filtrirano: Observable<string[]>;
   greskaGrad: boolean;
 
   constructor(private _citiesService: CitiesService, private _router: Router) { }
 
   ngOnInit() {
-    this.podaciSubscription = this._citiesService.getData()
+    // ovde uzima podatke i odbrojava vreme
+    this.podaciSubscription = this._citiesService.uzmiPodatke()
                               .subscribe((podaci) => {
                                 this.podaci = podaci;
                                 this.vreme = setInterval(() => {
@@ -37,25 +37,23 @@ export class CityInputComponent implements OnInit, OnDestroy {
                                 }, 1000);
                               });
 
-    this.filteredOptions = this.myControl.valueChanges
+    this.filtrirano = this.myControl.valueChanges
                           .pipe(startWith(''), map(val => this.filter(val)));
 
     this.greskaGrad = this._citiesService.greska;
   }
 
-  add(input: HTMLFormElement, form) {
+  // metoda za dodavanje gradova u listu i set polja za gresku (validacija)
+  dodaj(input: HTMLFormElement) {
     this._citiesService.dodajUListu(input.value);
 
-    if (this._citiesService.greska) {
-      this.greskaGrad = this._citiesService.greska;
-    } else {
-      this.greskaGrad = false;
-    }
+    this._citiesService.greska ? this.greskaGrad = true : this.greskaGrad = false;
   }
 
+  // metoda za filtriranje gradova u autocomplete polju
   filter(val): string[] {
-    return this.podaci.ponudjene.filter(option =>
-      option.toLowerCase().indexOf(val.toLowerCase()) === 0);
+    return this.podaci.ponudjene.filter(ponudjen =>
+      ponudjen.toLowerCase().indexOf(val.toLowerCase()) === 0);
   }
 
   ngOnDestroy() {

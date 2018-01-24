@@ -1,8 +1,8 @@
 <div id="city-guesslist">
   <p><strong>Lista ubacenih gradova:</strong></p>
   <ul>
-    <li class="clearfix" #element *ngFor="let grad of gradovi">{{ grad }} <button type="button" (click)="removeCity(element)">X</button></li>
+    <li class="clearfix" #element *ngFor="let grad of gradovi">{{ grad }} <button type="button" (click)="ukloni(element)">X</button></li>
   </ul>
-  <button id="btnZavrsi" type="button" routerLink="/result">Zavrsi igru</button>
+  <button id="btnZavrsi" type="button" routerLink="/result" (click)="zavrsi()">Zavrsi igru</button>
 </div>
 

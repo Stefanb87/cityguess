@@ -5,12 +5,12 @@
     <mat-form-field>
       <input #input type="text" name="city" placeholder="Unesi grad..." aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{ option }}
+        <mat-option *ngFor="let ponudjen of filtrirano | async" [value]="ponudjen">
+          {{ ponudjen }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
   </form>
   <p class="greska" *ngIf="greskaGrad">Unesite validnu vrednost. Polje je prazno ili je grad vec odabran.</p>
-  <button id="btnDodaj" type="button" (click)="add(input)">Dodaj u listu</button>
+  <button id="btnDodaj" type="button" (click)="dodaj(input)">Dodaj u listu</button>
 </div>
