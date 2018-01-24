@@ -25,13 +25,12 @@ export class CitiesService {
         const res = response.json();
         this.tacni = res.tacno;
         this.brojTacnih = res.tacno.length;
-        console.log(this.tacni);
         return res;
       });
   }
 
   dodajUListu(grad): boolean {
-    if (this.odabraniGradovi.filter(g => g === grad).length === 0) {
+    if (this.odabraniGradovi.filter(g => g === grad).length === 0 && grad !== '') {
       this.odabraniGradovi.push(grad);
       this.izracunajProcenatTacnih(grad);
       this.greska = false;
@@ -48,7 +47,6 @@ export class CitiesService {
         this.brojPogodjenih++;
         this.procenatTacnih = (this.brojPogodjenih / this.brojTacnih) * 100;
         this.emitujProcenatTacnih();
-        console.log(this.procenatTacnih);
       }
     });
   }

@@ -22,6 +22,8 @@ export class ResultComponent implements OnInit, OnDestroy {
 
   resetIgre() {
     this._citiesService.odabraniGradovi = [];
+    this._citiesService.procenatTacnih = 0;
+    this._citiesService.brojPogodjenih = 0;
   }
 
   ngOnDestroy() {

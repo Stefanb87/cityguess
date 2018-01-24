@@ -1,5 +1,6 @@
 <div id="result">
   <button routerLink="/" (click)="resetIgre()">Nova igra</button>
-  <p>Ukupno tacnih: {{ procenat }} %</p>
+  <p>Ukupno tacnih: <strong>{{ procenat }} %</strong></p>
+  <p id="procenat">{{ procenat }} %</p>
   <progress value="{{ procenat }}" max="100"></progress>
 </div>

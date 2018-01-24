@@ -1,0 +1,50 @@
+#city-guesslist {
+    display: inline-block;
+    width: 15%;
+    position: absolute;
+    margin-left: 5%;
+    padding-top: 30px;
+}
+
+#city-guesslist ul {
+    border: 1px solid #000;
+    list-style-type: none;
+    padding: 10px;
+}
+
+li {
+    padding-bottom: 10px;
+}
+
+button {
+    float: right;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+#btnZavrsi {
+    width: 100%;
+    font-size: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+.clearfix {
+    overflow: auto;
+}
+
+@media screen and (max-width: 990px) {
+    #city-guesslist {
+        width: 25%;
+        margin-left: 5%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    #city-guesslist {
+        width: 77%;
+        display: block;
+        margin-top: 70px;
+    }
+}

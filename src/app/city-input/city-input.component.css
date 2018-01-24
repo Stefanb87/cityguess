@@ -1,0 +1,57 @@
+#city-input {
+    width: 65%;
+    display: inline-block;
+    padding-top: 30px;
+}
+
+#city-input p {
+    display: inline-block;
+}
+
+#vreme {
+    float: right;
+}
+
+mat-form-field, input {
+    width: 100%;
+}
+
+#btnDodaj {
+    float: right;
+    padding: 10px 30px 10px 30px;
+    cursor: pointer;
+}
+
+.greska {
+    display: inline-block;
+    margin-top: 2px;
+    color: red;
+    background-color: rgba(255, 0, 0, 0.1);
+    padding: 10px 10px;
+    width: 60%;
+}
+
+@media screen and (max-width: 650px) {
+    .greska {
+        margin-top: 0px;
+        font-size: 11px;
+    }
+
+    #btnDodaj {
+        padding: 5px 10px 5px 10px;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    #city-input {
+        width: 100%;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .greska {
+        font-size: 11px;
+    }
+}
